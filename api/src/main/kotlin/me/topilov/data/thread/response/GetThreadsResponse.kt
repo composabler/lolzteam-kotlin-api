@@ -13,5 +13,5 @@ data class GetThreadsResponse(
     @JsonProperty("forum") val forum: Forum = Forum(),
     @JsonProperty("threads_total") val total: Int = -1,
     @JsonProperty("links") val links: ThreadsLinks = ThreadsLinks(),
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

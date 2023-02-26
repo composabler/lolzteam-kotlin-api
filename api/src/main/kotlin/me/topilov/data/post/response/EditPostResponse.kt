@@ -8,5 +8,5 @@ import me.topilov.data.post.Post
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class EditPostResponse(
     @JsonProperty("post") val post: Post? = null,
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

@@ -9,6 +9,6 @@ import me.topilov.data.user.FollowingUser
 data class GetUserFollowersResponse(
     @JsonProperty("users") val users: List<FollowingUser> = emptyList(),
     @JsonProperty("users_total") val total: Int = -1,
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )
 

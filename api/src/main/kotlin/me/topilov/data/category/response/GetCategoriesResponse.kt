@@ -9,5 +9,5 @@ import me.topilov.data.category.Category
 data class GetCategoriesResponse(
     @JsonProperty("categories") val categories: List<Category> = emptyList(),
     @JsonProperty("categories_total") val total: Int = -1,
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

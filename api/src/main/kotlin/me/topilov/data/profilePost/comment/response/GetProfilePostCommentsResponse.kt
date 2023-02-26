@@ -13,5 +13,5 @@ data class GetProfilePostCommentsResponse(
     @JsonProperty("comments_total") val total: Int = -1,
     @JsonProperty("profile_post") val post: ProfilePost? = null,
     @JsonProperty("timeline_user") val timelineUser: User? = null,
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

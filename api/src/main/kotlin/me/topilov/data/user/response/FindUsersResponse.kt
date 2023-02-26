@@ -8,5 +8,5 @@ import me.topilov.data.user.User
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class FindUsersResponse(
     @JsonProperty("users") val users: List<User> = emptyList(),
-    @JsonProperty("system_info") val systemInfo: SystemInfo
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

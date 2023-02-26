@@ -8,5 +8,5 @@ import me.topilov.data.profilePost.comment.ProfilePostComment
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class GetProfilePostCommentResponse(
     @JsonProperty("comment") val comment: ProfilePostComment? = null,
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

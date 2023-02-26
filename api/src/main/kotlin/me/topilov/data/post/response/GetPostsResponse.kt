@@ -11,5 +11,5 @@ data class GetPostsResponse(
     @JsonProperty("posts") val posts: List<Post> = emptyList(),
     @JsonProperty("thread") val thread: Thread? = null,
     @JsonProperty("posts_total") val total: Int = -1,
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

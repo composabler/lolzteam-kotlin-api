@@ -9,6 +9,6 @@ import me.topilov.data.thread.Thread
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class GetRecentThreadsResponse(
     @JsonProperty("threads") val rawThreads: List<RawThread> = emptyList(),
-    @JsonProperty("me/topilov/dataopilov/data") val threads: List<Thread> = emptyList(),
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("data") val threads: List<Thread> = emptyList(),
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

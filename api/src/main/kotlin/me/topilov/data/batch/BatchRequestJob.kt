@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class BatchRequestJob(
-    @JsonProperty("id") val id: String? = null,
-    @JsonProperty("uri") val uri: String? = null,
-    @JsonProperty("method") val method: String? = null,
-    @JsonProperty("params") val params: Map<String, Any>? = null
+    @JsonProperty("id") val id: String = "null",
+    @JsonProperty("uri") val uri: String = "null",
+    @JsonProperty("method") val method: String = "GET",
+    @JsonProperty("params") val params: Map<String, Any> = emptyMap(),
 )

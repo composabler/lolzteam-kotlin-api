@@ -11,5 +11,5 @@ data class GetTagsResponse(
     @JsonProperty("tags") val tags: Map<String, String> = emptyMap(),
     @JsonProperty("tags_total") val total: Int = -1,
     @JsonProperty("links") val links: TagsLinks = TagsLinks(),
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

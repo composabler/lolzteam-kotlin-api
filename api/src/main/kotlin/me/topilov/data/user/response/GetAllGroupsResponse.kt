@@ -8,5 +8,5 @@ import me.topilov.data.user.RawUserGroup
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class GetAllGroupsResponse(
     @JsonProperty("user_groups") val groups: List<RawUserGroup> = emptyList(),
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

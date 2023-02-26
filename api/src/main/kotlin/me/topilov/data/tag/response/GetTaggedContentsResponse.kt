@@ -13,5 +13,5 @@ data class GetTaggedContentsResponse(
     @JsonProperty("tagged") val tagged: List<Thread> = emptyList(),
     @JsonProperty("tagged_total") val total: Int = -1,
     @JsonProperty("links") val links: TagsLinks = TagsLinks(),
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

@@ -8,5 +8,5 @@ import me.topilov.data.page.Page
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class GetPageResponse(
     @JsonProperty("page") val page: Page? = null,
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

@@ -11,5 +11,5 @@ data class GetFollowedThreadsResponse(
     @JsonProperty("threads") val threads: List<Thread> = emptyList(),
     @JsonProperty("threads_total") val total: Int = -1,
     @JsonProperty("links") val links: ThreadsLinks = ThreadsLinks(),
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

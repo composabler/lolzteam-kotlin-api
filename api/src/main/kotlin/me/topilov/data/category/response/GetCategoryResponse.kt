@@ -8,5 +8,5 @@ import me.topilov.data.category.Category
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class GetCategoryResponse(
     @JsonProperty("category") val category: Category? = null,
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

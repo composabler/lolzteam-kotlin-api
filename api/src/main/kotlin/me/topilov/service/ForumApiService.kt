@@ -1,8 +1,6 @@
 package me.topilov.service
 
-import com.fasterxml.jackson.databind.JsonNode
 import me.topilov.data.Result
-import me.topilov.data.batch.BatchRequest
 import me.topilov.data.batch.BatchRequestJob
 import me.topilov.data.batch.BatchResponse
 import me.topilov.data.category.response.GetCategoriesResponse

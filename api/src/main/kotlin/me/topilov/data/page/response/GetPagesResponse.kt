@@ -9,5 +9,5 @@ import me.topilov.data.page.Page
 data class GetPagesResponse(
     @JsonProperty("pages") val pages: List<Page> = emptyList(),
     @JsonProperty("pages_total") val total: Int = -1,
-    @JsonProperty("system_info") val systemInfo: SystemInfo
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

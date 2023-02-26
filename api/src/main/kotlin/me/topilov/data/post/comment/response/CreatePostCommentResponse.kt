@@ -8,5 +8,5 @@ import me.topilov.data.post.comment.RawPostComment
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class CreatePostCommentResponse(
     @JsonProperty("comment") val comment: RawPostComment? = null,
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

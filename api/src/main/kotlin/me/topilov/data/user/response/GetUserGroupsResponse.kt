@@ -9,5 +9,5 @@ import me.topilov.data.user.UserGroup
 data class GetUserGroupsResponse(
     @JsonProperty("user_groups") val groups: List<UserGroup> = emptyList(),
     @JsonProperty("user_id") val userId: Int = -1,
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

@@ -1,9 +1,8 @@
 package me.topilov
 
 import kotlinx.coroutines.runBlocking
-import mapper
-import me.topilov.data.batch.BatchRequest
 import me.topilov.data.batch.BatchRequestJob
+import me.topilov.data.notification.response.GetNotificationsResponse
 import me.topilov.data.user.response.GetUserResponse
 
 private val TOKEN = System.getenv("TOKEN")
@@ -17,13 +16,11 @@ fun main() = runBlocking {
                 id = "user",
                 uri = "https://api.zelenka.guru/users/$USER_ID",
                 method = "GET",
-                params = mapOf(),
             ),
             BatchRequestJob(
                 id = "notifications",
                 uri = "https://api.zelenka.guru/notifications",
                 method = "GET",
-                params = mapOf(),
             )
         )
     )
@@ -32,5 +29,9 @@ fun main() = runBlocking {
     val userResponse = rawUserResponse.getData<GetUserResponse>()
     val user = userResponse.user ?: return@runBlocking
 
-    println(user.username)
+    val rawNotificationsResponse = response.jobs["notifications"] ?: return@runBlocking
+    val notificationsResponse = rawNotificationsResponse.getData<GetNotificationsResponse>()
+    val notifications = notificationsResponse.notifications
+
+    println("your username is ${user.username} and you has ${notifications.size} notifications")
 }

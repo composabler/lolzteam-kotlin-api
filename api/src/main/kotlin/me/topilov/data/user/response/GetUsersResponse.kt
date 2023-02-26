@@ -11,5 +11,5 @@ data class GetUsersResponse(
     @JsonProperty("users") val users: List<User> = emptyList(),
     @JsonProperty("users_total") val total: Int = -1,
     @JsonProperty("links") val links: UsersLinks = UsersLinks(),
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

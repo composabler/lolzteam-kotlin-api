@@ -8,5 +8,5 @@ import me.topilov.data.thread.Thread
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class GetThreadResponse(
     @JsonProperty("thread") val thread: Thread? = null,
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

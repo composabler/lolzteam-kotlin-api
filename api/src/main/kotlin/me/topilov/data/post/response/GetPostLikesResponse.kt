@@ -8,5 +8,5 @@ import me.topilov.data.user.RawUser
 @JsonIgnoreProperties(ignoreUnknown = true)
 data class GetPostLikesResponse(
     @JsonProperty("users") val users: List<RawUser> = emptyList(),
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )

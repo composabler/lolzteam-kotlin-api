@@ -11,5 +11,5 @@ data class GetNotificationsResponse(
     @JsonProperty("notifications") val notifications: List<Notification> = emptyList(),
     @JsonProperty("notifications_total") val total: Int = -1,
     @JsonProperty("links") val links: NotificationsLinks = NotificationsLinks(),
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )
