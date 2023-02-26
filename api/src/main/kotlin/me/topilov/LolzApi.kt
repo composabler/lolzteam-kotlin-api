@@ -1,6 +1,7 @@
 package me.topilov
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import mapper
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
@@ -14,8 +15,6 @@ class LolzApi(
     forumApiUrl: String = "https://api.zelenka.guru",
     marketApiUrl: String = "https://api.lzt.market",
 ) {
-
-    private val mapper = jacksonObjectMapper()
 
     private val okHttpClient = OkHttpClient.Builder()
         .addInterceptor(AuthInterceptor(token))

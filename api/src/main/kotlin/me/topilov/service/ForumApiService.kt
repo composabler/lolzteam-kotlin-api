@@ -1,6 +1,10 @@
 package me.topilov.service
 
+import com.fasterxml.jackson.databind.JsonNode
 import me.topilov.data.Result
+import me.topilov.data.batch.BatchRequest
+import me.topilov.data.batch.BatchRequestJob
+import me.topilov.data.batch.BatchResponse
 import me.topilov.data.category.response.GetCategoriesResponse
 import me.topilov.data.category.response.GetCategoryResponse
 import me.topilov.data.forum.response.GetFollowedForums
@@ -29,6 +33,9 @@ import me.topilov.data.user.response.*
 import retrofit2.http.*
 
 interface ForumApiService {
+
+    @POST("/batch")
+    suspend fun executeBatch(@Body batchRequest: List<BatchRequestJob>): BatchResponse
 
     @GET("categories")
     suspend fun getCategories(

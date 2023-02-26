@@ -1,10 +1,9 @@
-package me.topilov.data
+package me.topilov.data.batch
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class SystemInfo(
-    @JsonProperty("visitor_id") val visitorId: Int = -1,
-    @JsonProperty("time") val time: Long = -1,
+data class BatchRequest(
+    @JsonProperty("jobs") val jobs: Map<String, BatchRequestJob>,
 )
