@@ -14,7 +14,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-jackson:2.9.0")
 
     api("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0")
-    implementation("com.squareup.okhttp3:okhttp:4.9.0")
+    implementation("com.squareup.okhttp3:okhttp:4.9.2")
 
     api("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0")
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")

@@ -1,37 +1,45 @@
 package me.topilov
 
 import kotlinx.coroutines.runBlocking
-import me.topilov.data.batch.BatchRequestJob
-import me.topilov.data.notification.response.GetNotificationsResponse
+import me.topilov.data.profilePost.request.CreateProfilePostRequest
+import me.topilov.data.profilePost.response.CreateProfilePostResponse
+import me.topilov.data.user.request.GetUserRequest
 import me.topilov.data.user.response.GetUserResponse
 
 private val TOKEN = System.getenv("TOKEN")
 private val USER_ID = System.getenv("USER_ID").toInt()
 
 fun main() = runBlocking {
+
     val api = LolzApi(TOKEN)
-    val response = api.forumApiService.executeBatch(
+
+    val userRequest = GetUserRequest(
+        id = "user",
+        userId = USER_ID,
+    )
+
+    val postRequest = CreateProfilePostRequest(
+        id = "post",
+        userId = USER_ID,
+        postBody = "123",
+    )
+
+    val batchResponse = api.forumApiService.executeBatch(
         listOf(
-            BatchRequestJob(
-                id = "user",
-                uri = "https://api.zelenka.guru/users/$USER_ID",
-                method = "GET",
-            ),
-            BatchRequestJob(
-                id = "notifications",
-                uri = "https://api.zelenka.guru/notifications",
-                method = "GET",
-            )
+            userRequest,
+            postRequest,
         )
     )
 
-    val rawUserResponse = response.jobs["user"] ?: return@runBlocking
-    val userResponse = rawUserResponse.getData<GetUserResponse>()
+    val userBatchResponse = batchResponse.jobs[userRequest.id] ?: return@runBlocking
+    val userResponse = userBatchResponse.getData<GetUserResponse>()
     val user = userResponse.user ?: return@runBlocking
+    val username = user.username
 
-    val rawNotificationsResponse = response.jobs["notifications"] ?: return@runBlocking
-    val notificationsResponse = rawNotificationsResponse.getData<GetNotificationsResponse>()
-    val notifications = notificationsResponse.notifications
+    val postBatchResponse = batchResponse.jobs[postRequest.id] ?: return@runBlocking
+    val postResponse = postBatchResponse.getData<CreateProfilePostResponse>()
+    val post = postResponse.profilePost ?: return@runBlocking
+    val postId = post.id
 
-    println("your username is ${user.username} and you has ${notifications.size} notifications")
+    println("your username is $username and successfully create profile post with id $postId")
 }

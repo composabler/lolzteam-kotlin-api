@@ -1,7 +1,7 @@
 package me.topilov.service
 
 import me.topilov.data.Result
-import me.topilov.data.batch.BatchRequestJob
+import me.topilov.data.batch.BatchRequest
 import me.topilov.data.batch.BatchResponse
 import me.topilov.data.category.response.GetCategoriesResponse
 import me.topilov.data.category.response.GetCategoryResponse
@@ -26,6 +26,7 @@ import me.topilov.data.tag.response.GetTaggedContentsResponse
 import me.topilov.data.tag.response.GetTagsResponse
 import me.topilov.data.thread.response.GetThreadPollResponse
 import me.topilov.data.post.response.*
+import me.topilov.data.profilePost.response.CreateProfilePostResponse
 import me.topilov.data.thread.response.*
 import me.topilov.data.user.response.*
 import retrofit2.http.*
@@ -33,7 +34,7 @@ import retrofit2.http.*
 interface ForumApiService {
 
     @POST("/batch")
-    suspend fun executeBatch(@Body batchRequest: List<BatchRequestJob>): BatchResponse
+    suspend fun executeBatch(@Body batchRequest: List<@JvmSuppressWildcards BatchRequest>): BatchResponse
 
     @GET("categories")
     suspend fun getCategories(
@@ -401,6 +402,13 @@ interface ForumApiService {
     suspend fun getUserGroups(
         @Path("userId") userId: Int
     ): GetUserGroupsResponse
+
+    @POST("users/{userId}/timeline")
+    suspend fun createProfilePost(
+        @Path("userId") userId: Int,
+        @Query("post_body") postBody: String,
+        @Query("status") status: String? = null,
+    ): CreateProfilePostResponse
 
     @GET("profile-posts/{profilePostId}")
     suspend fun getProfilePost(
