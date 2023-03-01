@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class VoteThreadPollBatchRequest(
-    override val id: String,
     val threadId: Int,
     val responseId: Int,
     val responseIds: String? = null,

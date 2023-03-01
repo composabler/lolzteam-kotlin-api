@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class FollowThreadBatchRequest(
-    override val id: String,
     val threadId: Int,
     val email: Int? = null,
 ) : BatchRequest(

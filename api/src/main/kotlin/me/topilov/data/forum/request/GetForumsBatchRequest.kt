@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class GetForumsBatchRequest(
-    override val id: String,
     val parentCategoryId: Int? = null,
     val parentForumId: Int? = null,
     val order: String? = null,

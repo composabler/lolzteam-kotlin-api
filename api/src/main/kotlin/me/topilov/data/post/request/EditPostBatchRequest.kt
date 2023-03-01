@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class EditPostBatchRequest(
-    override val id: String,
     val postId: Int,
     val postBody: String,
     val threadTitle: String? = null,

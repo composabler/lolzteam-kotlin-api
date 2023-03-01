@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class GetRecentThreadsBatchRequest(
-    override val id: String,
     val days: Int? = null,
     val limit: Int? = null,
     val forumId: Int? = null,

@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class GetThreadsBatchRequest(
-    override val id: String,
     val forumId: Int? = null,
     val threadIds: String? = null,
     val creatorUserId: Int? = null,

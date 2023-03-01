@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class FindTagsBatchRequest(
-    override val id: String,
     val tag: String
 ) : BatchRequest(
     uri = "tags/find",

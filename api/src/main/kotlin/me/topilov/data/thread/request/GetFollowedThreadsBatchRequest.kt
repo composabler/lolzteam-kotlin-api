@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class GetFollowedThreadsBatchRequest(
-    override val id: String,
     val limit: Int? = null,
     val total: Boolean? = null
 ) : BatchRequest(

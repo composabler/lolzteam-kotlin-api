@@ -17,6 +17,4 @@ data class BatchResponseJob(
     fun setUnknownField(key: String, value: JsonNode) {
         rawData[key] = value
     }
-
-    inline fun <reified T> getData() = mapper.convertValue(rawData, T::class.java)
 }

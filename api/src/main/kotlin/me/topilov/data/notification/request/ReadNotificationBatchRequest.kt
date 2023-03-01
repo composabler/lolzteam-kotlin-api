@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class ReadNotificationBatchRequest(
-    override val id: String,
     val notificationId: Int? = null
 ) : BatchRequest(
     uri = "notifications/read",

@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class DeleteThreadBatchRequest(
-    override val id: String,
     val threadId: Int,
     val reason: String? = null,
 ) : BatchRequest(

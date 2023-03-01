@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class GetPostsBatchRequest(
-    override val id: String,
     val threadId: Int? = null,
     val pageOfPostId: Int? = null,
     val postIds: String? = null,

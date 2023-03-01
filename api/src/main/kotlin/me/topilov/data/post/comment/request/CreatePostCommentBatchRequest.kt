@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class CreatePostCommentBatchRequest(
-    override val id: String,
     val postId: Int,
     val commentBody: String,
 ) : BatchRequest(

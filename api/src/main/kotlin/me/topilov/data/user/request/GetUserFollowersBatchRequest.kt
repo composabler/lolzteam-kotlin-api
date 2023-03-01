@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class GetUserFollowersBatchRequest(
-    override val id: String,
     val userId: Int,
     val order: String? = null,
     val page: Int? = null,

@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class LostPasswordBatchRequest(
-    override val id: String,
     val oauthToken: String,
     val username: String? = null,
     val email: String? = null

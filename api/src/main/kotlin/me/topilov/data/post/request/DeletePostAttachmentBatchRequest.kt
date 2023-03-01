@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class DeletePostAttachmentBatchRequest(
-    override val id: String,
     val postId: String,
     val attachmentId: String,
     val threadId: String? = null,

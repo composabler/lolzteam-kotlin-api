@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class GetTagsBatchRequest(
-    override val id: String,
     val page: Int? = null,
     val limit: Int? = null,
 ) : BatchRequest(

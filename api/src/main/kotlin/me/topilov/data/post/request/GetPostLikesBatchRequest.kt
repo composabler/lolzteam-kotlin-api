@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class GetPostLikesBatchRequest(
-    override val id: String,
     val postId: Int,
     val page: Int? = null,
     val limit: Int? = null,

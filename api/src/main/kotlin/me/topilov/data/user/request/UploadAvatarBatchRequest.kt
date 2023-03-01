@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class UploadAvatarBatchRequest(
-    override val id: String,
     val userId: Int,
     val avatar: String
 ) : BatchRequest(

@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class CreateProfilePostBatchRequest(
-    override val id: String,
     val userId: Int,
     val postBody: String,
     val status: String? = null,

@@ -1,9 +1,15 @@
 package me.topilov
 
 import kotlinx.coroutines.runBlocking
+import me.topilov.data.notification.request.GetNotificationsBatchRequest
+import me.topilov.data.notification.response.GetNotificationsResponse
 import me.topilov.data.profilePost.request.CreateProfilePostBatchRequest
 import me.topilov.data.profilePost.response.CreateProfilePostResponse
+import me.topilov.data.user.request.GetFollowingsUsersBatchRequest
 import me.topilov.data.user.request.GetUserBatchRequest
+import me.topilov.data.user.request.GetUserGroupsBatchRequest
+import me.topilov.data.user.response.GetFollowingsUsersResponse
+import me.topilov.data.user.response.GetUserGroupsResponse
 import me.topilov.data.user.response.GetUserResponse
 
 private val TOKEN = System.getenv("TOKEN")
@@ -14,32 +20,25 @@ fun main() = runBlocking {
     val api = LolzApi(TOKEN)
 
     val userRequest = GetUserBatchRequest(
-        id = "user",
         userId = USER_ID,
     )
 
-    val postRequest = CreateProfilePostBatchRequest(
-        id = "post",
-        userId = USER_ID,
-        postBody = "123",
+    val groupsRequest = GetUserGroupsBatchRequest(
+        userId = USER_ID
     )
 
     val batchResponse = api.forumApiService.executeBatch(
         listOf(
             userRequest,
-            postRequest,
+            groupsRequest,
         )
     )
 
-    val userBatchResponse = batchResponse.jobs[userRequest.id] ?: return@runBlocking
-    val userResponse = userBatchResponse.getData<GetUserResponse>()
-    val user = userResponse.user ?: return@runBlocking
-    val username = user.username
+    val userResponse = batchResponse.getJob<GetUserResponse>(userRequest.id) ?: return@runBlocking
+    val username = userResponse.user?.username
 
-    val postBatchResponse = batchResponse.jobs[postRequest.id] ?: return@runBlocking
-    val postResponse = postBatchResponse.getData<CreateProfilePostResponse>()
-    val post = postResponse.profilePost ?: return@runBlocking
-    val postId = post.id
+    val groupsResponse = batchResponse.getJob<GetUserGroupsResponse>(groupsRequest.id) ?: return@runBlocking
+    val groups = groupsResponse.groups.size
 
-    println("your username is $username and successfully create profile post with id $postId")
+    println("your username is $username and you have $groups groups")
 }

@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class FollowForumBatchRequest(
-    override val id: String,
     val forumId: Int,
     val post: Int? = null,
     val alert: Int? = null,

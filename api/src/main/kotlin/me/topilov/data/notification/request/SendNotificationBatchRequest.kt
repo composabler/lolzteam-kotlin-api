@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class SendNotificationBatchRequest(
-    override val id: String,
     val userId: Int,
     val message: String,
     val notificationType: String? = null,

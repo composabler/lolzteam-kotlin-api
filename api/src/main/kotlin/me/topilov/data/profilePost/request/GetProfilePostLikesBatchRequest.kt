@@ -4,7 +4,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class GetProfilePostLikesBatchRequest(
-    override val id: String,
     val profilePostId: Int
 ) : BatchRequest(
     uri = "profile-posts/${profilePostId}/likes",

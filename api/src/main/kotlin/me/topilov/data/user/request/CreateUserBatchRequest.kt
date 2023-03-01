@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class CreateUserBatchRequest(
-    override val id: String,
     val userEmail: String,
     val username: String,
     val password: String,

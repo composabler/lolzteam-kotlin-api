@@ -5,7 +5,6 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class GetPostCommentsBatchRequest(
-    override val id: String,
     val postId: Int,
     val before: Long? = null,
 ) : BatchRequest(
