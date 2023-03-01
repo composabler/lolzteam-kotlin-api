@@ -111,10 +111,10 @@ interface ForumApiService {
 
     @POST("threads")
     suspend fun createThread(
-        @Query("forum_id") forumId: String,
+        @Query("forum_id") forumId: Int,
         @Query("thread_title") threadTitle: String,
         @Query("post_body") postBody: String,
-        @Query("thread_prefix_id") threadPrefixId: String? = null,
+        @Query("thread_prefix_id") threadPrefixId: Int? = null,
         @Query("thread_tags") threadTags: String? = null,
     ): CreateThreadResponse
 

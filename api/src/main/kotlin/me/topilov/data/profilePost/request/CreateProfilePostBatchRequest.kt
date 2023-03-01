@@ -4,7 +4,7 @@ import mapOfNotNull
 import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
-data class CreateProfilePostRequest(
+data class CreateProfilePostBatchRequest(
     override val id: String,
     val userId: Int,
     val postBody: String,

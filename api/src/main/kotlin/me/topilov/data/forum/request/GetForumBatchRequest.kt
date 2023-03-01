@@ -1,12 +1,12 @@
-package me.topilov.data.user.request
+package me.topilov.data.forum.request
 
 import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
-data class GetUserRequest(
+data class GetForumBatchRequest(
     override val id: String,
-    val userId: Int,
+    val forumId: Int  = -1,
 ) : BatchRequest(
-    uri = "users/$userId",
+    uri = "forums/${forumId}/followers",
     method = HttpMethod.GET,
 )

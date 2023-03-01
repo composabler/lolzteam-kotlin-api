@@ -1,9 +1,9 @@
 package me.topilov
 
 import kotlinx.coroutines.runBlocking
-import me.topilov.data.profilePost.request.CreateProfilePostRequest
+import me.topilov.data.profilePost.request.CreateProfilePostBatchRequest
 import me.topilov.data.profilePost.response.CreateProfilePostResponse
-import me.topilov.data.user.request.GetUserRequest
+import me.topilov.data.user.request.GetUserBatchRequest
 import me.topilov.data.user.response.GetUserResponse
 
 private val TOKEN = System.getenv("TOKEN")
@@ -13,12 +13,12 @@ fun main() = runBlocking {
 
     val api = LolzApi(TOKEN)
 
-    val userRequest = GetUserRequest(
+    val userRequest = GetUserBatchRequest(
         id = "user",
         userId = USER_ID,
     )
 
-    val postRequest = CreateProfilePostRequest(
+    val postRequest = CreateProfilePostBatchRequest(
         id = "post",
         userId = USER_ID,
         postBody = "123",
