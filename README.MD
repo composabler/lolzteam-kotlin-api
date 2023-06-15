@@ -65,4 +65,4 @@ For more examples, please check the "example" category in the repository.
 The *LolzApi* is currently under development, and we welcome feedback from developers. If you have any questions, comments, or suggestions, please feel free to contact us at https://t.me/null_null_null_null_none.
 
 ### Info
-In terms of the market, we plan to add our API to market. We also plan to provide comprehensive documentation and support resources to help users get up and running quickly and easily. 
+In terms of the market, we plan to add Market API. We also plan to provide comprehensive documentation and support resources to help users get up and running quickly and easily. 
