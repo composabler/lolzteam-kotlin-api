@@ -1,14 +1,8 @@
 package me.topilov
 
 import kotlinx.coroutines.runBlocking
-import me.topilov.data.notification.request.GetNotificationsBatchRequest
-import me.topilov.data.notification.response.GetNotificationsResponse
-import me.topilov.data.profilePost.request.CreateProfilePostBatchRequest
-import me.topilov.data.profilePost.response.CreateProfilePostResponse
-import me.topilov.data.user.request.GetFollowingsUsersBatchRequest
 import me.topilov.data.user.request.GetUserBatchRequest
 import me.topilov.data.user.request.GetUserGroupsBatchRequest
-import me.topilov.data.user.response.GetFollowingsUsersResponse
 import me.topilov.data.user.response.GetUserGroupsResponse
 import me.topilov.data.user.response.GetUserResponse
 

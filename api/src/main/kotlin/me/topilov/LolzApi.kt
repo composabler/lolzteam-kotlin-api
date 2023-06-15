@@ -1,11 +1,11 @@
 package me.topilov
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import mapper
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.jackson.JacksonConverterFactory
-import me.topilov.service.AuthInterceptor
+import me.topilov.interceptor.AuthInterceptor
+import me.topilov.interceptor.RateLimitInterceptor
 import me.topilov.service.ForumApiService
 import me.topilov.service.MarketApiService
 import java.util.concurrent.TimeUnit
@@ -17,6 +17,7 @@ class LolzApi(
 ) {
 
     private val okHttpClient = OkHttpClient.Builder()
+        .addInterceptor(RateLimitInterceptor())
         .addInterceptor(AuthInterceptor(token))
         .readTimeout(30, TimeUnit.SECONDS)
         .writeTimeout(30, TimeUnit.SECONDS)
@@ -37,5 +38,4 @@ class LolzApi(
     val forumApiService = forumRetrofit.create(ForumApiService::class.java)
 
     val marketApiService = marketRetrofit.create(MarketApiService::class.java)
-
 }

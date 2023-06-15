@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import me.topilov.deserializer.MapDeserializer
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-data class User(
+open class User(
     @JsonProperty("user_id") val id: Int = -1,
     @JsonProperty("username") val username: String = "null",
     @JsonProperty("user_title") val title: String = "null",

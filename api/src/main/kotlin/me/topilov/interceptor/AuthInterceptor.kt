@@ -1,4 +1,4 @@
-package me.topilov.service
+package me.topilov.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response
