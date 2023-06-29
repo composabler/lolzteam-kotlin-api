@@ -17,8 +17,8 @@ class LolzApi(
 ) {
 
     private val okHttpClient = OkHttpClient.Builder()
-        .addInterceptor(RateLimitInterceptor())
         .addInterceptor(AuthInterceptor(token))
+        .addInterceptor(RateLimitInterceptor())
         .readTimeout(30, TimeUnit.SECONDS)
         .writeTimeout(30, TimeUnit.SECONDS)
         .build()

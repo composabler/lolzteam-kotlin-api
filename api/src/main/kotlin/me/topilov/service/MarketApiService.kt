@@ -2,10 +2,19 @@ package me.topilov.service
 
 import com.fasterxml.jackson.databind.JsonNode
 import me.topilov.data.Result
+import me.topilov.data.batch.BatchRequest
+import me.topilov.data.batch.BatchResponse
 import me.topilov.data.proxy.response.GetProxyResponse
+import okhttp3.Call
+import okhttp3.Request
+import okhttp3.Response
+import okhttp3.ResponseBody
 import retrofit2.http.*
 
 interface MarketApiService {
+
+    @POST("/batch")
+    suspend fun executeBatch(@Body batchRequest: List<@JvmSuppressWildcards BatchRequest>): BatchResponse
 
     @GET("me")
     suspend fun getMyUser(): JsonNode
