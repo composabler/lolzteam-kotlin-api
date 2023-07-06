@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "1.7.10"
+    `maven-publish`
     application
 }
 
@@ -22,5 +23,15 @@ dependencies {
     api("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0")
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
 
-    testImplementation("junit:junit:4.13.1")
+    testImplementation("junit:junit:4.13.2")
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            artifactId = "anilibria-kotlin-api"
+            version = project.version.toString()
+            from(components["java"])
+        }
+    }
 }

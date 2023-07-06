@@ -2,9 +2,11 @@ import kotlinx.coroutines.runBlocking
 import me.topilov.LolzApi
 import me.topilov.data.profilePost.request.GetProfilePostLikesBatchRequest
 import me.topilov.data.profilePost.response.GetProfilePostLikesResponse
+import org.junit.Ignore
 import org.junit.Test
 
 
+@Ignore
 class Test {
 
    val TOKEN = System.getenv("TOKEN")
