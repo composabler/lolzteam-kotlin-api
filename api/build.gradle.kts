@@ -29,7 +29,7 @@ dependencies {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            artifactId = "anilibria-kotlin-api"
+            artifactId = "lolzteam-kotlin-api"
             version = project.version.toString()
             from(components["java"])
         }
