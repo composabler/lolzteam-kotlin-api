@@ -16,6 +16,22 @@ interface MarketApiService {
     @POST("/batch")
     suspend fun executeBatch(@Body batchRequest: List<@JvmSuppressWildcards BatchRequest>): BatchResponse
 
+    @GET("/")
+    suspend fun getLatestAccounts(): JsonNode
+
+    @GET("/{categoryName}")
+    suspend fun getCategoryAccounts(
+        @Path("categoryName") categoryName: String,
+        @Query("pmin") minPrice: Int? = null,
+        @Query("pmax") maxPrice: Int? = null,
+        @Query("title") title: String? = null,
+        @Query("parse_sticky_items") parseStickyItems: Boolean? = null,
+        @Query("parse_same_items") parseSameItems: Boolean? = null,
+        @Query("game") game: List<Int>? = null,
+        @Query("page") page: Int? = null,
+        @QueryMap optionalCategoryParameters: Map<String, String>? = null,
+    ): JsonNode
+
     @GET("me")
     suspend fun getMyUser(): JsonNode
 

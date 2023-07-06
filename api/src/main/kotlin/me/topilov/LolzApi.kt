@@ -35,7 +35,7 @@ class LolzApi(
         .addConverterFactory(JacksonConverterFactory.create(mapper))
         .build()
 
-    val forumApiService = forumRetrofit.create(ForumApiService::class.java)
+    val forumApiService: ForumApiService = forumRetrofit.create(ForumApiService::class.java)
 
-    val marketApiService = marketRetrofit.create(MarketApiService::class.java)
+    val marketApiService: MarketApiService = marketRetrofit.create(MarketApiService::class.java)
 }

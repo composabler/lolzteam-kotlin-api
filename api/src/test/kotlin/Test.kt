@@ -14,21 +14,6 @@ class Test {
 
    @Test
    fun test(): Unit = runBlocking {
-      val list = arrayListOf<GetProfilePostLikesBatchRequest>()
-
-      repeat(10) {
-         list.add(GetProfilePostLikesBatchRequest(profilePostId = 2129128))
-      }
-
-      var sendIn: Long
-
-      repeat(20) {
-         sendIn = System.currentTimeMillis()
-         val responseBatch = api.forumApiService.executeBatch(list.toList())
-         println("GET ANSWER AFTER ${System.currentTimeMillis() - sendIn}")
-         responseBatch.jobs.map { (uuid, _) ->
-            responseBatch.getJob<GetProfilePostLikesResponse>(uuid)?.users
-         }.also(::println)
-      }
+      println(api.forumApiService.getNotifications())
    }
 }
