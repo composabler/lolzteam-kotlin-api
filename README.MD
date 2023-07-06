@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/topilov/lolzteam-kotlin-api.svg)](https://jitpack.io/#topilov/lolzteam-kotlin-api)
+
 # Lolzteam-API
 
 The *LolzApi* is an API that allows developers to interact with the *LolzTeam* forum site. The API provides endpoints for common forum operations such as retrieving user information, creating posts, and much more.
@@ -12,9 +14,9 @@ All API requests require authentication with an API token. The token can be obta
 
 ### Usage
 
-To use the *LolzApi* in your Kotlin project, you must first add the following dependency to your project's **build.gradle** file:
-```
-implementation 'com.github.username:repository-name:version'
+To use the *LolzApi* in your Kotlin project, you must first add the following dependency to your project's **build.gradle.kts** file:
+```groovy
+implementation("com.github.topilov:lolzteam-kotlin-api:1.0.0")
 ```
 
 #### Default Request Example
