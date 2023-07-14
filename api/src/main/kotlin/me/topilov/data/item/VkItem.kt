@@ -1,9 +1,7 @@
 package me.topilov.data.item
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 data class VkItem(
     @JsonProperty("item_id") val id: Int,
     @JsonProperty("item_state") val state: ItemState,

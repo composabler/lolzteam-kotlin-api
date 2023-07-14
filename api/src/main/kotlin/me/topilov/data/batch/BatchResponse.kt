@@ -1,15 +1,13 @@
 package me.topilov.data.batch
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import mapper
 import me.topilov.data.SystemInfo
 import java.util.UUID
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 data class BatchResponse(
-    @JsonProperty("jobs") val jobs: Map<UUID, BatchResponseJob> = emptyMap(),
-    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
+    @JsonProperty("jobs") val jobs: Map<UUID, BatchResponseJob>,
+    @JsonProperty("system_info") val systemInfo: SystemInfo,
 ) {
 
     inline fun <reified T> getJob(id: UUID): T? {
