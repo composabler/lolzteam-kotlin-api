@@ -3,10 +3,9 @@ package me.topilov.data.notification
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 data class NotificationsLinks(
-    @JsonProperty("read") val read: String = "null",
-    @JsonProperty("pages") val pages: Int = -1,
-    @JsonProperty("page") val page: Int = -1,
-    @JsonProperty("next") val next: String = "null",
+    @JsonProperty("read") val read: String,
+    @JsonProperty("pages") val pages: Int,
+    @JsonProperty("page") val page: Int,
+    @JsonProperty("next") val next: String,
 )

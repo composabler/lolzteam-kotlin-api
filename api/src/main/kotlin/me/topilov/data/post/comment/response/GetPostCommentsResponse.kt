@@ -7,9 +7,8 @@ import me.topilov.data.SystemInfo
 import me.topilov.data.post.comment.PostComment
 import me.topilov.deserializer.MapDeserializer
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 data class GetPostCommentsResponse(
     @JsonDeserialize(using = MapDeserializer::class)
     @JsonProperty("comments") val comments: Map<String, PostComment> = emptyMap(),
-    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
+    @JsonProperty("system_info") val systemInfo: SystemInfo,
 )

@@ -6,10 +6,9 @@ import me.topilov.data.SystemInfo
 import me.topilov.data.notification.Notification
 import me.topilov.data.notification.NotificationsLinks
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 data class GetNotificationsResponse(
     @JsonProperty("notifications") val notifications: List<Notification> = emptyList(),
-    @JsonProperty("notifications_total") val total: Int = -1,
-    @JsonProperty("links") val links: NotificationsLinks = NotificationsLinks(),
-    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
+    @JsonProperty("notifications_total") val total: Int,
+    @JsonProperty("links") val links: NotificationsLinks,
+    @JsonProperty("system_info") val systemInfo: SystemInfo,
 )

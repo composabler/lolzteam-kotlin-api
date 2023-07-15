@@ -6,10 +6,9 @@ import mapper
 import me.topilov.data.SystemInfo
 import java.util.UUID
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 data class BatchResponse(
     @JsonProperty("jobs") val jobs: Map<UUID, BatchResponseJob> = emptyMap(),
-    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
+    @JsonProperty("system_info") val systemInfo: SystemInfo,
 ) {
 
     inline fun <reified T> getJob(id: UUID): T? {

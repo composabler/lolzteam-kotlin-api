@@ -1,7 +1,5 @@
 import kotlinx.coroutines.runBlocking
 import me.topilov.LolzApi
-import me.topilov.data.profilePost.request.GetProfilePostLikesBatchRequest
-import me.topilov.data.profilePost.response.GetProfilePostLikesResponse
 import org.junit.Ignore
 import org.junit.Test
 
@@ -16,6 +14,6 @@ class Test {
 
    @Test
    fun test(): Unit = runBlocking {
-      println(api.forumApiService.getNotifications())
+      api.forumApiService.getUser(USER_ID)
    }
 }

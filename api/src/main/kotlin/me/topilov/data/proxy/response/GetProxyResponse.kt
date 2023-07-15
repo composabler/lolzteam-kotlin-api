@@ -7,9 +7,8 @@ import me.topilov.data.SystemInfo
 import me.topilov.data.proxy.Proxy
 import me.topilov.deserializer.MapDeserializer
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 data class GetProxyResponse(
     @JsonDeserialize(using = MapDeserializer::class)
     @JsonProperty("proxies") val proxies: Map<String, Proxy> = emptyMap(),
-    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
+    @JsonProperty("system_info") val systemInfo: SystemInfo,
 )

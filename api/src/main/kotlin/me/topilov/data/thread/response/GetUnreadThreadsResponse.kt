@@ -6,9 +6,8 @@ import me.topilov.data.SystemInfo
 import me.topilov.data.thread.RawThread
 import me.topilov.data.thread.Thread
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 data class GetUnreadThreadsResponse(
     @JsonProperty("threads") val rawThreads: List<RawThread> = emptyList(),
     @JsonProperty("me/topilov/dataopilov/data") val threads: List<Thread> = emptyList(),
-    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
+    @JsonProperty("system_info") val systemInfo: SystemInfo,
 )

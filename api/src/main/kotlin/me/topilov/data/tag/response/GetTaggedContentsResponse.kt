@@ -7,11 +7,10 @@ import me.topilov.data.tag.Tag
 import me.topilov.data.tag.TagsLinks
 import me.topilov.data.thread.Thread
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 data class GetTaggedContentsResponse(
-    @JsonProperty("tag") val tag: Tag? = null,
+    @JsonProperty("tag") val tag: Tag?,
     @JsonProperty("tagged") val tagged: List<Thread> = emptyList(),
-    @JsonProperty("tagged_total") val total: Int = -1,
-    @JsonProperty("links") val links: TagsLinks = TagsLinks(),
-    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
+    @JsonProperty("tagged_total") val total: Int,
+    @JsonProperty("links") val links: TagsLinks,
+    @JsonProperty("system_info") val systemInfo: SystemInfo,
 )
