@@ -5,7 +5,7 @@ import me.topilov.data.SystemInfo
 import me.topilov.data.profilePost.ProfilePost
 
 data class EditProfilePostResponse(
-    @JsonProperty("profile_post") val post: ProfilePost?,
-    @JsonProperty("system_info") val systemInfo: SystemInfo,
+    @JsonProperty("profile_post") val post: ProfilePost? = null,
+    @JsonProperty("system_info") val systemInfo: SystemInfo = SystemInfo(),
 )
 

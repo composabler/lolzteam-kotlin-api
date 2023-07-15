@@ -4,13 +4,17 @@ import com.fasterxml.jackson.databind.JsonNode
 import me.topilov.data.Result
 import me.topilov.data.batch.BatchRequest
 import me.topilov.data.batch.BatchResponse
-import me.topilov.data.proxy.response.ProxyResponse
+import me.topilov.data.proxy.response.GetProxyResponse
+import okhttp3.Call
+import okhttp3.Request
+import okhttp3.Response
+import okhttp3.ResponseBody
 import retrofit2.http.*
 
 interface MarketApiService {
 
     @POST("/batch")
-    suspend fun executeBatch(@Body request: List<@JvmSuppressWildcards BatchRequest>): BatchResponse
+    suspend fun executeBatch(@Body batchRequest: List<@JvmSuppressWildcards BatchRequest>): BatchResponse
 
     @GET("/")
     suspend fun getLatestAccounts(): JsonNode
@@ -41,7 +45,7 @@ interface MarketApiService {
     ): Result
 
     @GET("proxy")
-    suspend fun getProxy(): ProxyResponse
+    suspend fun getProxy(): GetProxyResponse
 
     @POST("proxy")
     suspend fun addSingleProxy(
