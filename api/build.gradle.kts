@@ -17,6 +17,8 @@ dependencies {
     api("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.2")
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
 
+    implementation("com.github.omarmiatello.telegram:client:6.1")
+
     api("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.2")
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
 
