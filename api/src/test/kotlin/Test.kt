@@ -1,10 +1,11 @@
+
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import me.topilov.LolzApi
-import org.junit.Ignore
 import org.junit.Test
+import java.io.File
 
 
-@Ignore
 class Test {
 
    val TOKEN = System.getenv("TOKEN")
@@ -14,6 +15,8 @@ class Test {
 
    @Test
    fun test(): Unit = runBlocking {
-      api.forumApiService.getUser(USER_ID)
+      val file = File("C:/Users/Pavel/Downloads/vara/pic97.jpg").readBytes()
+      api.forumApiService.uploadAvatar(userId = USER_ID, avatar = file)
+      delay(10000)
    }
 }

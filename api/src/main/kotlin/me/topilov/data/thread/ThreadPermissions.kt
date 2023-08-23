@@ -1,6 +1,5 @@
 package me.topilov.data.thread
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class ThreadPermissions(
@@ -10,6 +9,6 @@ data class ThreadPermissions(
     @JsonProperty("post") val post: Boolean,
     @JsonProperty("upload_attachment") val uploadAttachment: Boolean,
     @JsonProperty("edit") val edit: Boolean,
-    @JsonProperty("edit_title") val editTitle: Boolean,
-    @JsonProperty("edit_tags") val editTags: Boolean,
+    @JsonProperty("edit_title") val editTitle: Boolean?,
+    @JsonProperty("edit_tags") val editTags: Boolean?,
 )

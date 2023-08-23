@@ -6,6 +6,7 @@ import okhttp3.Response
 class RateLimitInterceptor : Interceptor {
 
     private var limitBefore = 0L
+    var queueSize = 0
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()

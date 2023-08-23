@@ -1,32 +1,32 @@
 package me.topilov.service
 
+import com.fasterxml.jackson.databind.JsonNode
 import me.topilov.data.Result
 import me.topilov.data.batch.BatchRequest
 import me.topilov.data.batch.BatchResponse
-import me.topilov.data.category.response.GetCategoriesResponse
-import me.topilov.data.category.response.GetCategoryResponse
-import me.topilov.data.forum.response.GetFollowedForums
-import me.topilov.data.forum.response.GetForumFollowersResponse
-import me.topilov.data.forum.response.GetForumResponse
-import me.topilov.data.forum.response.GetForumsResponse
-import me.topilov.data.notification.response.GetNotificationResponse
-import me.topilov.data.notification.response.GetNotificationsResponse
-import me.topilov.data.page.response.GetPageResponse
-import me.topilov.data.page.response.GetPagesResponse
+import me.topilov.data.category.response.CategoriesResponse
+import me.topilov.data.category.response.CategoryResponse
+import me.topilov.data.forum.response.FollowedForumsResponse
+import me.topilov.data.forum.response.ForumFollowersResponse
+import me.topilov.data.forum.response.ForumResponse
+import me.topilov.data.forum.response.ForumsResponse
+import me.topilov.data.notification.response.NotificationResponse
+import me.topilov.data.notification.response.NotificationsResponse
+import me.topilov.data.page.response.PageResponse
+import me.topilov.data.page.response.PagesResponse
 import me.topilov.data.post.comment.response.CreatePostCommentResponse
 import me.topilov.data.post.comment.response.GetPostCommentsResponse
-import me.topilov.data.profilePost.response.GetProfilePostLikesResponse
-import me.topilov.data.profilePost.response.GetProfilePostResponse
-import me.topilov.data.profilePost.comment.response.CreateProfilePostCommentResponse
-import me.topilov.data.profilePost.comment.response.GetProfilePostCommentResponse
-import me.topilov.data.profilePost.comment.response.GetProfilePostCommentsResponse
-import me.topilov.data.profilePost.response.EditProfilePostResponse
-import me.topilov.data.tag.response.FindTagsResponse
-import me.topilov.data.tag.response.GetTaggedContentsResponse
-import me.topilov.data.tag.response.GetTagsResponse
-import me.topilov.data.thread.response.GetThreadPollResponse
 import me.topilov.data.post.response.*
+import me.topilov.data.profilePost.comment.response.CreateProfilePostCommentResponse
+import me.topilov.data.profilePost.comment.response.ProfilePostCommentResponse
+import me.topilov.data.profilePost.comment.response.ProfilePostCommentsResponse
 import me.topilov.data.profilePost.response.CreateProfilePostResponse
+import me.topilov.data.profilePost.response.EditProfilePostResponse
+import me.topilov.data.profilePost.response.GetProfilePostResponse
+import me.topilov.data.profilePost.response.ProfilePostLikesResponse
+import me.topilov.data.tag.response.FindTagsResponse
+import me.topilov.data.tag.response.TaggedContentsResponse
+import me.topilov.data.tag.response.TagsResponse
 import me.topilov.data.thread.response.*
 import me.topilov.data.user.response.*
 import retrofit2.http.*
@@ -41,29 +41,29 @@ interface ForumApiService {
         @Query("parent_category_id") parentCategoryId: Int? = null,
         @Query("parent_forum_id") parentForumId: Int? = null,
         @Query("order") order: String? = null,
-    ): GetCategoriesResponse
+    ): CategoriesResponse
 
     @GET("categories/{categoryId}")
     suspend fun getCategory(
         @Path("categoryId") categoryId: Int
-    ): GetCategoryResponse
+    ): CategoryResponse
 
     @GET("forums")
     suspend fun getForums(
         @Query("parent_category_id") parentCategoryId: Int? = null,
         @Query("parent_forum_id") parentForumId: Int? = null,
         @Query("order") order: String? = null,
-    ): GetForumsResponse
+    ): ForumsResponse
 
     @GET("forums/{forumId}")
     suspend fun getForum(
         @Path("forumId") forumId: Int
-    ): GetForumResponse
+    ): ForumResponse
 
     @GET("forums/{forumId}/followers")
     suspend fun getForumFollowers(
         @Path("forumId") forumId: Int
-    ): GetForumFollowersResponse
+    ): ForumFollowersResponse
 
     @POST("forums/{forumId}/followers")
     suspend fun followForum(
@@ -81,18 +81,18 @@ interface ForumApiService {
     @GET("forums/followed")
     suspend fun getFollowedForums(
         @Query("total") total: Boolean? = null
-    ): GetFollowedForums
+    ): FollowedForumsResponse
 
     @GET("pages")
     suspend fun getPages(
         @Query("parent_page_id") parentPageId: Int? = null,
         @Query("order") order: String? = null,
-    ): GetPagesResponse
+    ): PagesResponse
 
     @GET("pages/{pageId}")
     suspend fun getPage(
         @Path("pageId") pageId: Int
-    ): GetPageResponse
+    ): PageResponse
 
     @GET("threads")
     suspend fun getThreads(
@@ -107,7 +107,7 @@ interface ForumApiService {
         @Query("order") order: String? = null,
         @Query("thread_create_date") threadCreateDate: String? = null,
         @Query("thread_update_date") threadUpdateDate: String? = null,
-    ): GetThreadsResponse
+    ): ThreadsResponse
 
     @POST("threads")
     suspend fun createThread(
@@ -128,7 +128,7 @@ interface ForumApiService {
     @GET("threads/{threadId}")
     suspend fun getThread(
         @Path("threadId") threadId: Int
-    ): GetThreadResponse
+    ): ThreadResponse
 
     @DELETE("threads/{threadId}")
     suspend fun deleteThread(
@@ -139,7 +139,7 @@ interface ForumApiService {
     @GET("threads/{threadId}/followers")
     suspend fun getThreadFollowers(
         @Path("threadId") threadId: Int
-    ): GetThreadFollowersResponse
+    ): ThreadFollowersResponse
 
     @POST("threads/{threadId}/followers")
     suspend fun followThread(
@@ -156,12 +156,12 @@ interface ForumApiService {
     suspend fun getFollowedThreads(
         @Query("limit") limit: Int? = null,
         @Query("total") total: Boolean? = null,
-    ): GetFollowedThreadsResponse
+    ): FollowedThreadsResponse
 
     @GET("threads/{threadId}/poll")
     suspend fun getThreadPoll(
         @Path("threadId") threadId: Int,
-    ): GetThreadPollResponse
+    ): ThreadPollResponse
 
     @POST("threads/{threadId}/poll/votes")
     suspend fun voteThreadPoll(
@@ -175,7 +175,7 @@ interface ForumApiService {
         @Query("limit") limit: Int? = null,
         @Query("forum_id") forumId: Int? = null,
         @Query("data_limit") dataLimit: Int? = null,
-    ): GetUnreadThreadsResponse
+    ): UnreadThreadsResponse
 
     @GET("threads/recent")
     suspend fun getRecentThreads(
@@ -183,7 +183,7 @@ interface ForumApiService {
         @Query("limit") limit: Int? = null,
         @Query("forum_id") forumId: Int? = null,
         @Query("data_limit") dataLimit: Int? = null,
-    ): GetRecentThreadsResponse
+    ): RecentThreadsResponse
 
     @GET("posts")
     suspend fun getPosts(
@@ -193,7 +193,7 @@ interface ForumApiService {
         @Query("page") page: Int? = null,
         @Query("limit") limit: Int? = null,
         @Query("order") order: String? = null,
-    ): GetPostsResponse
+    ): PostsResponse
 
     @POST("posts")
     suspend fun createPost(
@@ -205,7 +205,7 @@ interface ForumApiService {
     @GET("posts/{postId}")
     suspend fun getPost(
         @Path("postId") postId: Int,
-    ): GetPostResponse
+    ): PostResponse
 
     @PUT("posts/{postId}")
     suspend fun editPost(
@@ -236,7 +236,7 @@ interface ForumApiService {
         @Path("postId") postId: Int,
         @Query("page") page: Int? = null,
         @Query("limit") limit: Int? = null,
-    ): GetPostLikesResponse
+    ): PostLikesResponse
 
     @POST("posts/{postId}/likes")
     suspend fun likePost(
@@ -270,14 +270,14 @@ interface ForumApiService {
     suspend fun getTags(
         @Query("page") page: Int? = null,
         @Query("limit") limit: Int? = null,
-    ): GetTagsResponse
+    ): TagsResponse
 
     @GET("/tags/{tagId}")
     suspend fun getTaggedContents(
         @Path("tagId") tagId: Int,
         @Query("page") page: Int? = null,
         @Query("limit") limit: Int? = null,
-    ): GetTaggedContentsResponse
+    ): TaggedContentsResponse
 
     @GET("/tags/find")
     suspend fun findTags(
@@ -288,7 +288,7 @@ interface ForumApiService {
     suspend fun getUsers(
         @Query("page") page: Int? = null,
         @Query("limit") limit: Int? = null,
-    ): GetUsersResponse
+    ): UsersResponse
 
     @POST("/users")
     suspend fun createUser(
@@ -305,7 +305,7 @@ interface ForumApiService {
     ): Result
 
     @GET("/users/fields")
-    suspend fun getUserFields(): GetUserFieldsResponse
+    suspend fun getUserFields(): UserFieldsResponse
 
     @GET("/users/find")
     suspend fun findUsers(
@@ -317,7 +317,7 @@ interface ForumApiService {
     @GET("users/{userId}")
     suspend fun getUser(
         @Path("userId") userId: Int,
-    ): GetUserResponse
+    ): UserResponse
 
     @PUT("/users/{userId}")
     suspend fun editUser(
@@ -346,8 +346,8 @@ interface ForumApiService {
     @POST("users/{userId}/avatar")
     suspend fun uploadAvatar(
         @Path("userId") userId: Int,
-        @Query("avatar") avatar: String,
-    ): Result
+        @Query("avatar") avatar: ByteArray,
+    ): JsonNode
 
     @DELETE("users/{userId}/avatar")
     suspend fun deleteAvatar(
@@ -360,7 +360,7 @@ interface ForumApiService {
         @Query("order") order: String? = null,
         @Query("page") page: Int? = null,
         @Query("limit") limit: Int? = null
-    ): GetUserFollowersResponse
+    ): UserFollowersResponse
 
     @POST("users/{userId}/followers")
     suspend fun followUser(
@@ -378,12 +378,12 @@ interface ForumApiService {
         @Query("order") order: String? = null,
         @Query("page") page: Int? = null,
         @Query("limit") limit: Int? = null,
-    ): GetFollowingsUsersResponse
+    ): FollowingsUsersResponse
 
     @GET("users/ignored")
     suspend fun getIgnoredUsers(
         @Query("total") total: Int? = null
-    ): GetIgnoredUsersResponse
+    ): IgnoredUsersResponse
 
     @POST("users/{userId}/ignore")
     suspend fun ignoreUser(
@@ -396,12 +396,12 @@ interface ForumApiService {
     ): Result
 
     @GET("users/groups")
-    suspend fun getAllGroups(): GetAllGroupsResponse
+    suspend fun getAllGroups(): AllGroupsResponse
 
     @GET("users/{userId}/groups")
     suspend fun getUserGroups(
         @Path("userId") userId: Int
-    ): GetUserGroupsResponse
+    ): UserGroupsResponse
 
     @POST("users/{userId}/timeline")
     suspend fun createProfilePost(
@@ -430,7 +430,7 @@ interface ForumApiService {
     @GET("profile-posts/{profilePostId}/likes")
     suspend fun getProfilePostLikes(
         @Path("profilePostId") profilePostId: Int
-    ): GetProfilePostLikesResponse
+    ): ProfilePostLikesResponse
 
     @POST("profile-posts/{profilePostId}/likes")
     suspend fun likeProfilePost(
@@ -446,7 +446,7 @@ interface ForumApiService {
     suspend fun getProfilePostComments(
         @Path("profilePostId") profilePostId: Int,
         @Query("before") before: String? = null
-    ): GetProfilePostCommentsResponse
+    ): ProfilePostCommentsResponse
 
     @POST("profile-posts/{profilePostId}/comments")
     suspend fun createProfilePostComment(
@@ -458,7 +458,7 @@ interface ForumApiService {
     suspend fun getProfilePostComment(
         @Path("profilePostId") profilePostId: Int,
         @Path("commentId") commentId: Int
-    ): GetProfilePostCommentResponse
+    ): ProfilePostCommentResponse
 
     @DELETE("profile-posts/{profilePostId}/comments/{commentId}")
     suspend fun deleteProfilePostComment(
@@ -478,12 +478,12 @@ interface ForumApiService {
     ): Result
 
     @GET("notifications")
-    suspend fun getNotifications(): GetNotificationsResponse
+    suspend fun getNotifications(): NotificationsResponse
 
     @GET("notifications/{notificationId}/content")
     suspend fun getNotification(
         @Path("notificationId") notificationId: Int
-    ): GetNotificationResponse
+    ): NotificationResponse
 
     @POST("notifications/custom")
     suspend fun sendNotification(

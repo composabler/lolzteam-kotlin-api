@@ -1,6 +1,5 @@
 package me.topilov.data.post
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class PostPermissions(
@@ -10,5 +9,5 @@ data class PostPermissions(
     @JsonProperty("reply") val reply: Boolean,
     @JsonProperty("like") val like: Boolean,
     @JsonProperty("report") val report: Boolean,
-    @JsonProperty("uploadAttachment") val uploadAttachment: Boolean,
+    @JsonProperty("uploadAttachment") val uploadAttachment: Boolean?,
 )

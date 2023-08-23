@@ -1,13 +1,13 @@
 package me.topilov
 
 import mapper
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.jackson.JacksonConverterFactory
 import me.topilov.interceptor.AuthInterceptor
 import me.topilov.interceptor.RateLimitInterceptor
 import me.topilov.service.ForumApiService
 import me.topilov.service.MarketApiService
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.jackson.JacksonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class LolzApi(
@@ -16,9 +16,12 @@ class LolzApi(
     marketApiUrl: String = "https://api.lzt.market",
 ) {
 
+    val authInterceptor = AuthInterceptor(token)
+    val rateLimitInterceptor = RateLimitInterceptor()
+
     private val okHttpClient = OkHttpClient.Builder()
-        .addInterceptor(AuthInterceptor(token))
-        .addInterceptor(RateLimitInterceptor())
+        .addInterceptor(authInterceptor)
+        .addInterceptor(rateLimitInterceptor)
         .readTimeout(30, TimeUnit.SECONDS)
         .writeTimeout(30, TimeUnit.SECONDS)
         .build()

@@ -2,13 +2,10 @@ package me.topilov.service
 
 import com.fasterxml.jackson.databind.JsonNode
 import me.topilov.data.Result
+import me.topilov.data.accounts.response.AccountsResponse
 import me.topilov.data.batch.BatchRequest
 import me.topilov.data.batch.BatchResponse
-import me.topilov.data.proxy.response.GetProxyResponse
-import okhttp3.Call
-import okhttp3.Request
-import okhttp3.Response
-import okhttp3.ResponseBody
+import me.topilov.data.proxy.response.ProxyResponse
 import retrofit2.http.*
 
 interface MarketApiService {
@@ -17,7 +14,7 @@ interface MarketApiService {
     suspend fun executeBatch(@Body batchRequest: List<@JvmSuppressWildcards BatchRequest>): BatchResponse
 
     @GET("/")
-    suspend fun getLatestAccounts(): JsonNode
+    suspend fun getLatestAccounts(): AccountsResponse
 
     @GET("/{categoryName}")
     suspend fun getCategoryAccounts(
@@ -29,7 +26,19 @@ interface MarketApiService {
         @Query("parse_same_items") parseSameItems: Boolean? = null,
         @Query("game") game: List<Int>? = null,
         @Query("page") page: Int? = null,
-        @QueryMap optionalCategoryParameters: Map<String, String>? = null,
+        @QueryMap optionalCategoryParameters: Map<String, String> = emptyMap(),
+    ): AccountsResponse
+
+    // https://github.com/NztForum/Lolzteam-Public-API/blob/master/docs/market_api.markdown#get-useruseriditems
+
+    // https://github.com/NztForum/Lolzteam-Public-API/blob/master/docs/market_api.markdown#get-useruseridorders
+
+    @GET("/fave")
+    suspend fun getFavoriteAccounts(): AccountsResponse
+
+    @GET("/{itemId}")
+    suspend fun getAccount(
+        @Path("itemId") itemId: Int
     ): JsonNode
 
     @GET("me")
@@ -45,7 +54,7 @@ interface MarketApiService {
     ): Result
 
     @GET("proxy")
-    suspend fun getProxy(): GetProxyResponse
+    suspend fun getProxy(): ProxyResponse
 
     @POST("proxy")
     suspend fun addSingleProxy(
@@ -65,4 +74,6 @@ interface MarketApiService {
         @Query("proxy_id") proxyId: Int? = null,
         @Query("delete_all") deleteAll: Boolean? = null,
     ): Result
+
+
 }

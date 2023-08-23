@@ -13,6 +13,7 @@ allprojects {
     repositories {
         mavenCentral()
         maven { url = uri("https://jitpack.io") }
+        maven { url = uri("https://mvn.mchv.eu/repository/mchv/") }
     }
 }
 
