@@ -346,7 +346,7 @@ interface ForumApiService {
     @POST("users/{userId}/avatar")
     suspend fun uploadAvatar(
         @Path("userId") userId: Int,
-        @Query("avatar") avatar: ByteArray,
+        @Query("avatar") avatar: String,
     ): JsonNode
 
     @DELETE("users/{userId}/avatar")
