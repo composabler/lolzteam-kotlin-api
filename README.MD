@@ -64,7 +64,7 @@ For more examples, please check the "example" category in the repository.
 > Note that this examples should be run inside a coroutine, which can be started with runBlocking or CoroutineScope(Dispatchers.IO).launch {}, this is required for asynchronous code.
 
 ### Feedback and Development
-The *LolzApi* is currently under development, and we welcome feedback from developers. If you have any questions, comments, or suggestions, please feel free to contact us at https://t.me/null_null_null_null_none.
+The *LolzApi* is currently under development, and we welcome feedback from developers. If you have any questions, comments, or suggestions, please feel free to contact us at https://t.me/composabler
 
 ### Info
 In terms of the market, we plan to add Market API. We also plan to provide comprehensive documentation and support resources to help users get up and running quickly and easily. 
