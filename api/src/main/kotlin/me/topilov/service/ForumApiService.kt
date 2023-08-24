@@ -1,6 +1,5 @@
 package me.topilov.service
 
-import com.fasterxml.jackson.databind.JsonNode
 import me.topilov.data.Result
 import me.topilov.data.batch.BatchRequest
 import me.topilov.data.batch.BatchResponse
@@ -349,7 +348,7 @@ interface ForumApiService {
     suspend fun uploadAvatar(
         @Path("userId") userId: Int,
         @Part avatar: MultipartBody.Part,
-    ): JsonNode
+    ): Result
 
     @DELETE("users/{userId}/avatar")
     suspend fun deleteAvatar(
