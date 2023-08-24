@@ -8,7 +8,7 @@ plugins {
 
 allprojects {
     group = "me.topilov"
-    project.version = "1.0.1"
+    project.version = "1.0.4"
 
     repositories {
         mavenCentral()

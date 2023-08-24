@@ -23,6 +23,8 @@ class LolzApi(
         .addInterceptor(authInterceptor)
         .addInterceptor(rateLimitInterceptor)
         .readTimeout(30, TimeUnit.SECONDS)
+        .connectTimeout(30, TimeUnit.SECONDS)
+        .callTimeout(30, TimeUnit.SECONDS)
         .writeTimeout(30, TimeUnit.SECONDS)
         .build()
 

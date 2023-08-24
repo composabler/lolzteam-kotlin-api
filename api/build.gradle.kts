@@ -10,11 +10,13 @@ dependencies {
     api("com.fasterxml.jackson.core:jackson-core:2.14.2")
     api("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.2")
 
+    testImplementation("commons-io:commons-io:2.11.0")
+
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-jackson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
-    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    api("com.squareup.okhttp3:okhttp:4.10.0")
 
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
 

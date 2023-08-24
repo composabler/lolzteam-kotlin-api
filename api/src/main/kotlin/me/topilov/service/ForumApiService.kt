@@ -29,6 +29,7 @@ import me.topilov.data.tag.response.TaggedContentsResponse
 import me.topilov.data.tag.response.TagsResponse
 import me.topilov.data.thread.response.*
 import me.topilov.data.user.response.*
+import okhttp3.MultipartBody
 import retrofit2.http.*
 
 interface ForumApiService {
@@ -343,10 +344,11 @@ interface ForumApiService {
         @Query("email") email: String? = null
     ): Result
 
+    @Multipart
     @POST("users/{userId}/avatar")
     suspend fun uploadAvatar(
         @Path("userId") userId: Int,
-        @Query("avatar") avatar: String,
+        @Part avatar: MultipartBody.Part,
     ): JsonNode
 
     @DELETE("users/{userId}/avatar")
