@@ -13,7 +13,7 @@ class RateLimitInterceptor : Interceptor {
 
         if (response.code == 429) {
             val timeout = limitBefore - System.currentTimeMillis()
-            val currentTimeout = timeout.coerceAtLeast(1000L)
+            val currentTimeout = timeout.coerceAtLeast(100L)
             Thread.sleep(currentTimeout)
             response.close()
             response = chain.proceed(request)
