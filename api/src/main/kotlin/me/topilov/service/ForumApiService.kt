@@ -9,6 +9,7 @@ import me.topilov.data.forum.response.FollowedForumsResponse
 import me.topilov.data.forum.response.ForumFollowersResponse
 import me.topilov.data.forum.response.ForumResponse
 import me.topilov.data.forum.response.ForumsResponse
+import me.topilov.data.navigation.response.NavigationElementsResponse
 import me.topilov.data.notification.response.NotificationResponse
 import me.topilov.data.notification.response.NotificationsResponse
 import me.topilov.data.page.response.PageResponse
@@ -23,7 +24,12 @@ import me.topilov.data.profilePost.response.CreateProfilePostResponse
 import me.topilov.data.profilePost.response.EditProfilePostResponse
 import me.topilov.data.profilePost.response.GetProfilePostResponse
 import me.topilov.data.profilePost.response.ProfilePostLikesResponse
+import me.topilov.data.search.response.SearchPostsResponse
+import me.topilov.data.search.response.SearchResponse
+import me.topilov.data.search.response.SearchTaggedResponse
+import me.topilov.data.search.response.SearchThreadsResponse
 import me.topilov.data.tag.response.FindTagsResponse
+import me.topilov.data.tag.response.PopularTagsResponse
 import me.topilov.data.tag.response.TaggedContentsResponse
 import me.topilov.data.tag.response.TagsResponse
 import me.topilov.data.thread.response.*
@@ -118,13 +124,6 @@ interface ForumApiService {
         @Query("thread_tags") threadTags: String? = null,
     ): CreateThreadResponse
 
-    @DELETE("threads/attachments")
-    suspend fun deleteThreadAttachment(
-        @Query("forum_id") forumId: Int,
-        @Query("attachment_id") attachmentId: Int,
-        @Query("attachment_hash") attachmentHash: String? = null,
-    ): Result
-
     @GET("threads/{threadId}")
     suspend fun getThread(
         @Path("threadId") threadId: Int
@@ -158,6 +157,11 @@ interface ForumApiService {
         @Query("total") total: Boolean? = null,
     ): FollowedThreadsResponse
 
+    @GET("threads/{threadId}/navigation")
+    suspend fun getNavigationElements(
+        @Path("threadId") threadId: Int,
+    ): NavigationElementsResponse
+
     @GET("threads/{threadId}/poll")
     suspend fun getThreadPoll(
         @Path("threadId") threadId: Int,
@@ -184,6 +188,11 @@ interface ForumApiService {
         @Query("forum_id") forumId: Int? = null,
         @Query("data_limit") dataLimit: Int? = null,
     ): RecentThreadsResponse
+
+    @POST("threads/{threadId}/bump")
+    suspend fun bumpThread(
+        @Path("threadId") threadId: Int,
+    ): BumpThreadResponse
 
     @GET("posts")
     suspend fun getPosts(
@@ -223,14 +232,6 @@ interface ForumApiService {
         @Query("reason") reason: String? = null,
     ): Result
 
-    @DELETE("posts/{postId}/attachments/{attachmentId}")
-    suspend fun deletePostAttachment(
-        @Path("postId") postId: String,
-        @Path("attachmentId") attachmentId: String,
-        @Query("thread_id") threadId: String? = null,
-        @Query("attachment_hash") attachmentHash: String? = null,
-    ): Result
-
     @GET("posts/{postId}/likes")
     suspend fun getPostLikes(
         @Path("postId") postId: Int,
@@ -266,6 +267,9 @@ interface ForumApiService {
         @Query("comment_body") commentBody: String,
     ): CreatePostCommentResponse
 
+    @GET("tags")
+    suspend fun getPopularTags(): PopularTagsResponse
+
     @GET("/tags/list")
     suspend fun getTags(
         @Query("page") page: Int? = null,
@@ -290,19 +294,20 @@ interface ForumApiService {
         @Query("limit") limit: Int? = null,
     ): UsersResponse
 
-    @POST("/users")
+    @POST("users")
     suspend fun createUser(
-        @Query("user_email") userEmail: String,
-        @Query("username") username: String,
+        @Query("user_email") email: String,
+        @Query("username") name: String,
         @Query("password") password: String,
         @Query("password_algo") passwordAlgo: String? = null,
-        @Query("user_dob_day") userDobDay: Int? = null,
-        @Query("user_dob_month") userDobMonth: Int? = null,
-        @Query("user_dob_year") userDobYear: Int? = null,
+        @Query("user_dob_day") userDobDay: String? = null,
+        @Query("user_dob_month") userDobMonth: String? = null,
+        @Query("user_dob_year") userDobYear: String? = null,
         @Query("fields") fields: String? = null,
-        @Query("client_id") clientId: Int? = null,
+        @Query("client_id") clientId: String? = null,
         @Query("extra_data") extraData: String? = null,
-    ): Result
+        @Query("extra_timestamp") extraTimestamp: String? = null,
+    ): CreateUserResponse
 
     @GET("/users/fields")
     suspend fun getUserFields(): UserFieldsResponse
@@ -313,6 +318,9 @@ interface ForumApiService {
         @Query("user_email") userEmail: String? = null,
         @Query("custom_fields") customFields: String? = null,
     ): FindUsersResponse
+
+    @GET("users/me")
+    suspend fun getMyUser(): MyUserResponse
 
     @GET("users/{userId}")
     suspend fun getUser(
@@ -443,6 +451,12 @@ interface ForumApiService {
         @Path("profilePostId") profilePostId: Int
     ): Result
 
+    @POST("profile-posts/{profilePostId}/report")
+    suspend fun reportProfilePost(
+        @Path("profilePostId") profilePostId: Int,
+        @Query("message") message: String
+    ): Result
+
     @GET("profile-posts/{profilePostId}/comments")
     suspend fun getProfilePostComments(
         @Path("profilePostId") profilePostId: Int,
@@ -467,17 +481,6 @@ interface ForumApiService {
         @Path("commentId") commentId: Int,
     ): Result
 
-    @POST("profile-posts/{profilePostId}/report")
-    suspend fun reportProfilePost(
-        @Path("profilePostId") profilePostId: Int,
-        @Query("message") message: String
-    ): Result
-
-    @POST("notifications/read")
-    suspend fun readNotification(
-        @Query("notification_id") notificationId: Int? = null
-    ): Result
-
     @GET("notifications")
     suspend fun getNotifications(): NotificationsResponse
 
@@ -493,4 +496,49 @@ interface ForumApiService {
         @Query("notification_type") notificationType: String? = null,
         @Query("extra_data") extraData: String? = null,
     ): Result
+
+    @POST("notifications/read")
+    suspend fun readNotification(
+        @Query("notification_id") notificationId: Int? = null
+    ): Result
+
+    @POST("search/threads")
+    suspend fun searchThreads(
+        @Query("q") query: String? = null,
+        @Query("tag") tag: String? = null,
+        @Query("forum_id") forumId: Int? = null,
+        @Query("user_id") userId: Int? = null,
+        @Query("page") page: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("data_limit") dataLimit: Int? = null,
+    ): SearchThreadsResponse
+
+    @POST("search/posts")
+    suspend fun searchPosts(
+        @Query("q") query: String? = null,
+        @Query("tag") tag: String? = null,
+        @Query("forum_id") forumId: Int? = null,
+        @Query("user_id") userId: Int? = null,
+        @Query("page") page: Int? = null,
+        @Query("limit") limit: Int? = null,
+        @Query("data_limit") dataLimit: Int? = null,
+    ): SearchPostsResponse
+
+    @POST("search")
+    suspend fun search(
+        @Query("q") query: String? = null,
+        @Query("tag") tag: String? = null,
+        @Query("forum_id") forumId: Int? = null,
+        @Query("user_id") userId: Int? = null,
+        @Query("page") page: Int? = null,
+        @Query("limit") limit: Int? = null,
+    ): SearchResponse
+
+    @POST("search/tagged")
+    suspend fun searchTagged(
+        @Query("tag") tag: String? = null,
+        @Query("tags") tags: List<String>? = null,
+        @Query("page") page: Int? = null,
+        @Query("limit") limit: Int? = null,
+    ): SearchTaggedResponse
 }

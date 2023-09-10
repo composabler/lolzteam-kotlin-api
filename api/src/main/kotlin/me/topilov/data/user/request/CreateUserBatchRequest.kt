@@ -5,7 +5,7 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.utils.HttpMethod
 
 data class CreateUserBatchRequest(
-    val userEmail: String,
+    val email: String,
     val username: String,
     val password: String,
     val passwordAlgo: String? = null,
@@ -14,12 +14,13 @@ data class CreateUserBatchRequest(
     val userDobYear: Int? = null,
     val fields: String? = null,
     val clientId: Int? = null,
-    val extraData: String? = null
+    val extraData: String? = null,
+    val extraTimestamp: String? = null,
 ) : BatchRequest(
     uri = "users",
     method = HttpMethod.POST,
     params = mapOfNotNull(
-        "user_email" to userEmail,
+        "user_email" to email,
         "username" to username,
         "password" to password,
         "password_algo" to passwordAlgo,
@@ -28,6 +29,7 @@ data class CreateUserBatchRequest(
         "user_dob_year" to userDobYear,
         "fields" to fields,
         "client_id" to clientId,
-        "extra_data" to extraData
+        "extra_data" to extraData,
+        "extra_timestamp" to extraTimestamp,
     )
 )
