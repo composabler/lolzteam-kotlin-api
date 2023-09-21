@@ -16,14 +16,14 @@ All API requests require authentication with an API token. The token can be obta
 
 To use the *LolzApi* in your Kotlin project, you must first add the following dependency to your project's **build.gradle.kts** file:
 ```groovy
-implementation("com.github.topilov:lolzteam-kotlin-api:1.0.0")
+implementation("com.github.topilov:lolzteam-kotlin-api:1.0.7")
 ```
 
 #### Default Request Example
 ```kotlin
 fun main() = runBlocking { // Define main function, which is the entry point of the program
     val api = LolzApi(TOKEN) // Create an instance of the LolzApi class, passing in a TOKEN string
-    val userResponse = api.forumApiService.getUser(USER_ID) // Call the getUser function to retrieve the user with the specified ID
+    val userResponse = api.getUser(USER_ID) // Call the getUser function to retrieve the user with the specified ID
     val username = userResponse.user?.username // Get the username from the GetUserResponse, or null if the user is not found
     println("your username is $username") // Print the username to the console
 }
@@ -42,7 +42,7 @@ fun main() = runBlocking { // Define main function, which is the entry point of 
         userId = USER_ID // Specify the ID of the user to retrieve groups for
     )
     
-    val batchResponse = api.forumApiService.executeBatch( // Execute the batch request and get the response
+    val batchResponse = api.executeForumBatch( // Execute the batch request and get the response
         listOf( // Pass a list of requests to execute in the batch
             userRequest, // Add the GetUserBatchRequest to the batch
             groupsRequest // Add the GetUserGroupsBatchRequest to the batch
