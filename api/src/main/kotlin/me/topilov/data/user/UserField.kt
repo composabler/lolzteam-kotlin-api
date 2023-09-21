@@ -11,6 +11,6 @@ data class UserField(
     @JsonProperty("position") val position: String,
     @JsonProperty("is_required") val isRequired: Boolean,
     @JsonProperty("value") val value: String?,
-    @JsonProperty("is_multi_choice") val isMultiChoice: Boolean,
+    @JsonProperty("is_multi_choice") val isMultiChoice: Boolean? = null,
     @JsonProperty("choices") val choices: List<Choice> = emptyList(),
 )

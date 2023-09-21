@@ -5,6 +5,7 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.data.batch.BatchResponse
 import me.topilov.data.category.response.CategoriesResponse
 import me.topilov.data.category.response.CategoryResponse
+import me.topilov.data.contents.response.ContentsResponse
 import me.topilov.data.forum.response.FollowedForumsResponse
 import me.topilov.data.forum.response.ForumFollowersResponse
 import me.topilov.data.forum.response.ForumResponse
@@ -418,6 +419,13 @@ interface ForumApiService {
         @Query("post_body") postBody: String,
         @Query("status") status: String? = null,
     ): CreateProfilePostResponse
+
+    @GET("users/{userId}/timeline")
+    suspend fun getContents(
+        @Path("userId") userId: Int,
+        @Query("page") page: Int? = null,
+        @Query("limit") limit: Int? = null,
+    ): ContentsResponse
 
     @GET("profile-posts/{profilePostId}")
     suspend fun getProfilePost(

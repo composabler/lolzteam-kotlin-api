@@ -8,6 +8,7 @@ import me.topilov.data.batch.BatchRequest
 import me.topilov.data.batch.BatchResponse
 import me.topilov.data.category.response.CategoriesResponse
 import me.topilov.data.category.response.CategoryResponse
+import me.topilov.data.contents.response.ContentsResponse
 import me.topilov.data.forum.response.FollowedForumsResponse
 import me.topilov.data.forum.response.ForumFollowersResponse
 import me.topilov.data.forum.response.ForumResponse
@@ -470,6 +471,14 @@ class LolzApi(
         status: String? = null,
     ): CreateProfilePostResponse {
         return forumApiService.createProfilePost(userId, postBody, status)
+    }
+
+    suspend fun getContents(
+        userId: Int,
+        page: Int? = null,
+        limit: Int? = null,
+    ): ContentsResponse {
+        return forumApiService.getContents(userId, page, limit)
     }
 
     suspend fun getProfilePost(profilePostId: Int): GetProfilePostResponse {
